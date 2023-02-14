@@ -148,7 +148,7 @@ body:
         at net.minecraft.server.v1_8_R3.MinecraftServer.A(MinecraftServer.java:680) ~[server1.jar:git-PaperSpigot-f6b10d47]
         at net.minecraft.server.v1_8_R3.MinecraftServer.run(MinecraftServer.java:583) ~[server1.jar:git-PaperSpigot-f6b10d47]
         at java.lang.Thread.run(Thread.java:748) ~[?:1.8.0_292] Caused by: java.lang.NullPointerException
-        at me.rockyhawk.commandpanels.panelblocks.PanelBlockOnClick.onInteract(PanelBlockOnClick.java:23) ~[?:?]
+        at main.java.me.rockyhawk.commandpanels.panelblocks.PanelBlockOnClick.onInteract(PanelBlockOnClick.java:23) ~[?:?]
         at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_292]
         at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_292]
         at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_292]

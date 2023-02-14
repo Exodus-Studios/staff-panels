@@ -1,0 +1,81 @@
+version: 3.18.4.0
+main: me.rockyhawk.commandpanels.CommandPanels
+name: StaffPanels
+author: RockyHawk
+api-version: '1.13'
+description: Fully Custom GUIs. Make your Server Professional.
+softdepend: [PlaceholderAPI, Vault, HeadDatabase, TokenManager, VotingPlugin, MMOItems, CustomItems, ChestSort, CoinsAPINB]
+commands:
+   staffpanel:
+      description: Open a staff panel.
+      usage: /staffpanel <panel> [player:item] [player]
+      aliases: [sp, spanel]
+   staffpanelreload:
+      description: Reloads plugin config.
+      usage: /staffpanelreload
+      aliases: [spr, spanelr]
+   staffpaneldata:
+      description: Change data values for players
+      usage: /staffpaneldata
+      aliases: [spdata]
+   staffpaneldebug:
+      description: Enable and Disable debug mode globally
+      usage: /staffpaneldebug
+      aliases: [spd, spaneld]
+   staffpanelblock:
+      description: Add or remove panels from blocks being looked at.
+      usage: /staffpanelblock
+      aliases: [spb, spanelb]
+   staffpanelgenerate:
+      description: Generate GUI.
+      usage: /staffpanelgenerate
+      aliases: [spg, spanelg]
+   staffpanelversion:
+      description: Display the current version.
+      usage: /staffpanelversion
+      aliases: [spv, spanelv]
+   staffpaneledit:
+      description: Edit panels ingame.
+      usage: /staffpaneledit <panel>
+      aliases: [spe, spanele]
+   staffpanellist:
+      description: Lists the currently loaded panels.
+      usage: /staffpanellist
+      aliases: [spl, spanell]
+   staffpanelimport:
+      description: Import raw text panels from online.
+      usage: /staffpanelimport
+      aliases: [spi, spaneli]
+permissions:
+   staffpanel.panel.default:
+      default: true
+   staffpanel.other:
+      default: op
+   staffpanel.panel.*:
+      default: op
+   staffpanel.item.*:
+      default: op
+   staffpanel.reload:
+      default: op
+   staffpanel.debug:
+      default: op
+   staffpanel.block.add:
+      default: op
+   staffpanel.block.remove:
+      default: op
+   staffpanel.block.list:
+      default: op
+   staffpanel.generate:
+      default: op
+   staffpanel.version:
+      default: true
+   staffpanel.update:
+      default: op
+   staffpanel.data:
+      default: op
+   staffpanel.edit:
+      default: op
+   staffpanel.list:
+      default: op
+   staffpanel.import:
+      default: op

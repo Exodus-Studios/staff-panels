@@ -20,7 +20,7 @@ config:
   update-notifications: true
   panel-snooper: false
   format:
-    tag: '&6[&bCommandPanels&6] '
+    tag: '&6[&bStaffPanels&6] '
     perms: '&cNo permission.'
     reload: '&aReloaded.'
     nopanel: '&cPanel not found.'

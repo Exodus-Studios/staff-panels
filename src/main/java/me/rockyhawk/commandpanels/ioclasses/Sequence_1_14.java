@@ -2,8 +2,8 @@ package me.rockyhawk.commandpanels.ioclasses;
 
 //1.14-1.17 Imports
 import me.rockyhawk.commandpanels.CommandPanels;
-import org.bukkit.craftbukkit.libs.org.apache.commons.io.IOUtils;
-import org.bukkit.craftbukkit.libs.org.apache.commons.io.input.CharSequenceReader;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.input.CharSequenceReader;
 
 import java.io.IOException;
 import java.io.InputStream;

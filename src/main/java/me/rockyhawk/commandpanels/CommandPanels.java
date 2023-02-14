@@ -74,7 +74,7 @@ public class CommandPanels extends JavaPlugin{
     public boolean openWithItem = false; //this will be true if there is a panel with open-with-item
 
     //initialise the tag
-    public String tag = "[CommandPanels]";
+    public String tag = "[StaffPanels]";
 
     public List<Player> generateMode = new ArrayList<>(); //players that are currently in generate mode
     public List<String[]> editorInputStrings = new ArrayList<>();
@@ -112,7 +112,7 @@ public class CommandPanels extends JavaPlugin{
     public YamlConfiguration blockConfig; //where panel block locations are stored
 
     public void onEnable() {
-        Bukkit.getLogger().info("[CommandPanels] RockyHawk's CommandPanels v" + this.getDescription().getVersion() + " Plugin Loading...");
+        Bukkit.getLogger().info("[StaffPanels] RockyHawk's CommandPanels v" + this.getDescription().getVersion() + " Plugin Loading...");
 
         //register config files
         this.blockConfig = YamlConfiguration.loadConfiguration(new File(getDataFolder() + File.separator + "blocks.yml"));
@@ -129,7 +129,7 @@ public class CommandPanels extends JavaPlugin{
                 configFileConfiguration.save(configFile);
                 this.config = YamlConfiguration.loadConfiguration(new File(this.getDataFolder() + File.separator + "config.yml"));
             } catch (IOException var11) {
-                Bukkit.getConsoleSender().sendMessage("[CommandPanels]" + ChatColor.RED + " WARNING: Could not save the config file!");
+                Bukkit.getConsoleSender().sendMessage("[StaffPanels]" + ChatColor.RED + " WARNING: Could not save the config file!");
             }
         }else{
             //check if the config file has any missing elements
@@ -139,7 +139,7 @@ public class CommandPanels extends JavaPlugin{
                 this.config.options().copyDefaults(true);
                 this.config.save(new File(this.getDataFolder() + File.separator + "config.yml"));
             } catch (IOException var10) {
-                Bukkit.getConsoleSender().sendMessage("[CommandPanels]" + ChatColor.RED + " WARNING: Could not save the config file!");
+                Bukkit.getConsoleSender().sendMessage("[StaffPanels]" + ChatColor.RED + " WARNING: Could not save the config file!");
             }
         }
 
@@ -151,23 +151,22 @@ public class CommandPanels extends JavaPlugin{
         //setup class files
         this.setupEconomy();
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
-        new Metrics(this);
-        Objects.requireNonNull(this.getCommand("commandpanel")).setExecutor(new Commandpanel(this));
-        Objects.requireNonNull(this.getCommand("commandpanel")).setTabCompleter(new CpTabComplete(this));
+        Objects.requireNonNull(this.getCommand("staffpanel")).setExecutor(new Commandpanel(this));
+        Objects.requireNonNull(this.getCommand("staffpanel")).setTabCompleter(new CpTabComplete(this));
 
-        Objects.requireNonNull(this.getCommand("commandpanelgenerate")).setTabCompleter(new TabCompleteGenerate(this));
-        Objects.requireNonNull(this.getCommand("commandpanelgenerate")).setExecutor(new Commandpanelsgenerate(this));
+        Objects.requireNonNull(this.getCommand("staffpanelgenerate")).setTabCompleter(new TabCompleteGenerate(this));
+        Objects.requireNonNull(this.getCommand("staffpanelgenerate")).setExecutor(new Commandpanelsgenerate(this));
 
-        Objects.requireNonNull(this.getCommand("commandpaneldata")).setTabCompleter(new DataTabComplete(this));
-        Objects.requireNonNull(this.getCommand("commandpaneldata")).setExecutor(new Commandpanelsdata(this));
+        Objects.requireNonNull(this.getCommand("staffpaneldata")).setTabCompleter(new DataTabComplete(this));
+        Objects.requireNonNull(this.getCommand("staffpaneldata")).setExecutor(new Commandpanelsdata(this));
 
-        Objects.requireNonNull(this.getCommand("commandpanelimport")).setExecutor(new CommandPanelImport(this));
-        Objects.requireNonNull(this.getCommand("commandpanelimport")).setTabCompleter(new ImportTabComplete(this));
+        Objects.requireNonNull(this.getCommand("staffpanelimport")).setExecutor(new CommandPanelImport(this));
+        Objects.requireNonNull(this.getCommand("staffpanelimport")).setTabCompleter(new ImportTabComplete(this));
 
-        Objects.requireNonNull(this.getCommand("commandpanelreload")).setExecutor(new Commandpanelsreload(this));
-        Objects.requireNonNull(this.getCommand("commandpaneldebug")).setExecutor(new Commandpanelsdebug(this));
-        Objects.requireNonNull(this.getCommand("commandpanelversion")).setExecutor(new Commandpanelversion(this));
-        Objects.requireNonNull(this.getCommand("commandpanellist")).setExecutor(new Commandpanelslist(this));
+        Objects.requireNonNull(this.getCommand("staffpanelreload")).setExecutor(new Commandpanelsreload(this));
+        Objects.requireNonNull(this.getCommand("staffpaneldebug")).setExecutor(new Commandpanelsdebug(this));
+        Objects.requireNonNull(this.getCommand("staffpanelversion")).setExecutor(new Commandpanelversion(this));
+        Objects.requireNonNull(this.getCommand("staffpanellist")).setExecutor(new Commandpanelslist(this));
         this.getServer().getPluginManager().registerEvents(new Utils(this), this);
         this.getServer().getPluginManager().registerEvents(inventorySaver, this);
         this.getServer().getPluginManager().registerEvents(inputUtils, this);
@@ -207,14 +206,14 @@ public class CommandPanels extends JavaPlugin{
         //if ingame-editor set to false, don't load this
         if(Objects.requireNonNull(config.getString("config.ingame-editor")).equalsIgnoreCase("true")){
             this.getServer().getPluginManager().registerEvents(new CPEventHandler(this), this);
-            Objects.requireNonNull(this.getCommand("commandpaneledit")).setTabCompleter(new CommandPanelsEditorTabComplete(this));
-            Objects.requireNonNull(this.getCommand("commandpaneledit")).setExecutor(new CommandPanelsEditorCommand(this));
+            Objects.requireNonNull(this.getCommand("staffpaneledit")).setTabCompleter(new CommandPanelsEditorTabComplete(this));
+            Objects.requireNonNull(this.getCommand("staffpaneledit")).setExecutor(new CommandPanelsEditorCommand(this));
         }
 
         //if panel-blocks set to false, don't load this
         if(Objects.requireNonNull(config.getString("config.panel-blocks")).equalsIgnoreCase("true")){
-            Objects.requireNonNull(this.getCommand("commandpanelblock")).setExecutor(new Commandpanelblocks(this));
-            Objects.requireNonNull(this.getCommand("commandpanelblock")).setTabCompleter(new BlocksTabComplete(this));
+            Objects.requireNonNull(this.getCommand("staffpanelblock")).setExecutor(new Commandpanelblocks(this));
+            Objects.requireNonNull(this.getCommand("staffpanelblock")).setTabCompleter(new BlocksTabComplete(this));
             this.getServer().getPluginManager().registerEvents(new PanelBlockOnClick(this), this);
         }
 
@@ -251,7 +250,7 @@ public class CommandPanels extends JavaPlugin{
                 FileConfiguration templateFileConfiguration = YamlConfiguration.loadConfiguration(getReaderFromStream(this.getResource("template.yml")));
                 templateFileConfiguration.save(new File(this.panelsf + File.separator + "template.yml"));
             } catch (IOException var11) {
-                Bukkit.getConsoleSender().sendMessage("[CommandPanels]" + ChatColor.RED + " WARNING: Could not save the example file!");
+                Bukkit.getConsoleSender().sendMessage("[StaffPanels]" + ChatColor.RED + " WARNING: Could not save the example file!");
             }
         }
 
@@ -265,20 +264,10 @@ public class CommandPanels extends JavaPlugin{
         //do hotbar items
         hotbar.reloadHotbarSlots();
 
-        //add custom charts bStats
-        Metrics metrics = new Metrics(this);
-        metrics.addCustomChart(new Metrics.SingleLineChart("panels_amount", new Callable<Integer>() {
-            @Override
-            public Integer call() throws Exception {
-                //this is the total panels loaded
-                return panelList.size();
-            }
-        }));
-
         //get tag
         tag = tex.colour(config.getString("config.format.tag"));
 
-        Bukkit.getLogger().info("[CommandPanels] RockyHawk's CommandPanels v" + this.getDescription().getVersion() + " Plugin Loaded!");
+        Bukkit.getLogger().info("[StaffPanels] RockyHawk's CommandPanels v" + this.getDescription().getVersion() + " Plugin Loaded!");
     }
 
     public void onDisable() {
@@ -407,7 +396,7 @@ public class CommandPanels extends JavaPlugin{
 
             //check before adding the file to commandpanels
             if(!checkPanels(YamlConfiguration.loadConfiguration(new File(directory + File.separator + fileName)))){
-                this.getServer().getConsoleSender().sendMessage("[CommandPanels]" + ChatColor.RED + " Error in: " + fileName);
+                this.getServer().getConsoleSender().sendMessage("[StaffPanels]" + ChatColor.RED + " Error in: " + fileName);
                 continue;
             }
             for (String tempName : Objects.requireNonNull(YamlConfiguration.loadConfiguration(new File(directory + File.separator + fileName)).getConfigurationSection("panels")).getKeys(false)) {
@@ -429,13 +418,13 @@ public class CommandPanels extends JavaPlugin{
     public void debug(Exception e, Player p) {
         if (p == null) {
             if(debug.consoleDebug){
-                getServer().getConsoleSender().sendMessage(ChatColor.DARK_RED + "[CommandPanels] The plugin has generated a debug error, find the error below");
+                getServer().getConsoleSender().sendMessage(ChatColor.DARK_RED + "[StaffPanels] The plugin has generated a debug error, find the error below");
                 e.printStackTrace();
             }
         }else{
             if(debug.isEnabled(p)){
                 p.sendMessage(tag + ChatColor.DARK_RED + "Check the console for a detailed error.");
-                getServer().getConsoleSender().sendMessage(ChatColor.DARK_RED + "[CommandPanels] The plugin has generated a debug error, find the error below");
+                getServer().getConsoleSender().sendMessage(ChatColor.DARK_RED + "[StaffPanels] The plugin has generated a debug error, find the error below");
                 e.printStackTrace();
             }
         }
@@ -443,47 +432,47 @@ public class CommandPanels extends JavaPlugin{
 
     public void helpMessage(CommandSender p) {
         p.sendMessage(tex.colour( tag + ChatColor.GREEN + "Commands:"));
-        p.sendMessage(ChatColor.GOLD + "/cp <panel> [player:item] [player] " + ChatColor.WHITE + "Open a command panel.");
-        if (p.hasPermission("commandpanel.reload")) {
-            p.sendMessage(ChatColor.GOLD + "/cpr " + ChatColor.WHITE + "Reloads plugin config.");
+        p.sendMessage(ChatColor.GOLD + "/sp <panel> [player:item] [player] " + ChatColor.WHITE + "Open a staff panel.");
+        if (p.hasPermission("staffpanel.reload")) {
+            p.sendMessage(ChatColor.GOLD + "/spr " + ChatColor.WHITE + "Reloads plugin config.");
         }
-        if (p.hasPermission("commandpanel.generate")) {
-            p.sendMessage(ChatColor.GOLD + "/cpg <rows> " + ChatColor.WHITE + "Generate GUI from popup menu.");
+        if (p.hasPermission("staffpanel.generate")) {
+            p.sendMessage(ChatColor.GOLD + "/spg <rows> " + ChatColor.WHITE + "Generate GUI from popup menu.");
         }
-        if (p.hasPermission("commandpanel.version")) {
-            p.sendMessage(ChatColor.GOLD + "/cpv " + ChatColor.WHITE + "Display the current version.");
+        if (p.hasPermission("staffpanel.version")) {
+            p.sendMessage(ChatColor.GOLD + "/spv " + ChatColor.WHITE + "Display the current version.");
         }
-        if (p.hasPermission("commandpanel.update")) {
-            p.sendMessage(ChatColor.GOLD + "/cpv latest " + ChatColor.WHITE + "Download the latest update upon server reload/restart.");
-            p.sendMessage(ChatColor.GOLD + "/cpv [version:cancel] " + ChatColor.WHITE + "Download an update upon server reload/restart.");
+        if (p.hasPermission("staffpanel.update")) {
+            p.sendMessage(ChatColor.GOLD + "/spv latest " + ChatColor.WHITE + "Download the latest update upon server reload/restart.");
+            p.sendMessage(ChatColor.GOLD + "/spv [version:cancel] " + ChatColor.WHITE + "Download an update upon server reload/restart.");
         }
-        if (p.hasPermission("commandpanel.import")) {
-            p.sendMessage(ChatColor.GOLD + "/cpi [file name] [URL] " + ChatColor.WHITE + "Downloads a panel from a raw link online.");
+        if (p.hasPermission("staffpanel.import")) {
+            p.sendMessage(ChatColor.GOLD + "/spi [file name] [URL] " + ChatColor.WHITE + "Downloads a panel from a raw link online.");
         }
-        if (p.hasPermission("commandpanel.list")) {
-            p.sendMessage(ChatColor.GOLD + "/cpl " + ChatColor.WHITE + "Lists the currently loaded panels.");
+        if (p.hasPermission("staffpanel.list")) {
+            p.sendMessage(ChatColor.GOLD + "/spl " + ChatColor.WHITE + "Lists the currently loaded panels.");
         }
-        if (p.hasPermission("commandpanel.data")) {
-            p.sendMessage(ChatColor.GOLD + "/cpdata " + ChatColor.WHITE + "Change panel data for a user.");
+        if (p.hasPermission("staffpanel.data")) {
+            p.sendMessage(ChatColor.GOLD + "/spdata " + ChatColor.WHITE + "Change panel data for a user.");
         }
-        if (p.hasPermission("commandpanel.debug")) {
-            p.sendMessage(ChatColor.GOLD + "/cpd " + ChatColor.WHITE + "Enable and Disable debug mode globally.");
+        if (p.hasPermission("staffpanel.debug")) {
+            p.sendMessage(ChatColor.GOLD + "/spd " + ChatColor.WHITE + "Enable and Disable debug mode globally.");
         }
-        if (p.hasPermission("commandpanel.block.add")) {
-            p.sendMessage(ChatColor.GOLD + "/cpb add <panel> " + ChatColor.WHITE + "Add panel to a block being looked at.");
+        if (p.hasPermission("staffpanel.block.add")) {
+            p.sendMessage(ChatColor.GOLD + "/spb add <panel> " + ChatColor.WHITE + "Add panel to a block being looked at.");
         }
-        if (p.hasPermission("commandpanel.block.remove")) {
-            p.sendMessage(ChatColor.GOLD + "/cpb remove " + ChatColor.WHITE + "Removes any panel assigned to a block looked at.");
+        if (p.hasPermission("staffpanel.block.remove")) {
+            p.sendMessage(ChatColor.GOLD + "/spb remove " + ChatColor.WHITE + "Removes any panel assigned to a block looked at.");
         }
-        if (p.hasPermission("commandpanel.block.list")) {
-            p.sendMessage(ChatColor.GOLD + "/cpb list " + ChatColor.WHITE + "List blocks that will open panels.");
+        if (p.hasPermission("staffpanel.block.list")) {
+            p.sendMessage(ChatColor.GOLD + "/spb list " + ChatColor.WHITE + "List blocks that will open panels.");
         }
-        if (p.hasPermission("commandpanel.edit")) {
-            p.sendMessage(ChatColor.GOLD + "/cpe <panel> " + ChatColor.WHITE + "Edit a panel with the Panel Editor.");
+        if (p.hasPermission("staffpanel.edit")) {
+            p.sendMessage(ChatColor.GOLD + "/spe <panel> " + ChatColor.WHITE + "Edit a panel with the Panel Editor.");
         }
     }
 
-    public final Map<String, Color> colourCodes = new HashMap<String, Color>() {{
+    public final Map<String, Color> colourCodes = new HashMap<>() {{
         put("AQUA", Color.AQUA);
         put("BLUE", Color.BLUE);
         put("GRAY", Color.GRAY);
