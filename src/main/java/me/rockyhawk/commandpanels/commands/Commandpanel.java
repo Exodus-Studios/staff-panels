@@ -17,11 +17,10 @@ public class Commandpanel implements CommandExecutor {
         this.plugin = pl;
     }
 
-    @EventHandler
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         //below is going to go through the files and find the right one
         Panel panel = null;
-        if (args.length != 0) { //check to make sure the person hasn't just left it empty
+        if (args.length != 0) { //sheck to make sure the person hasn't just left it empty
             for(Panel tempPanel : plugin.panelList){
                 if(tempPanel.getName().equals(args[0])) {
                     panel = tempPanel;
@@ -44,21 +43,21 @@ public class Commandpanel implements CommandExecutor {
             }
         }
         //below will start the command, once it got the right file and panel
-        if (cmd.getName().equalsIgnoreCase("cp") || cmd.getName().equalsIgnoreCase("commandpanel") || cmd.getName().equalsIgnoreCase("cpanel")) {
+        if (cmd.getName().equalsIgnoreCase("cp") || cmd.getName().equalsIgnoreCase("staffpanel") || cmd.getName().equalsIgnoreCase("spanel")) {
             if(!(sender instanceof Player)) {
                 //do console command command
                 if(args.length == 2){
                     if(!args[1].equals("item")){
                         plugin.openVoids.openCommandPanel(sender, plugin.getServer().getPlayer(args[1]), panel.copy(), PanelPosition.Top, true);
                     }else{
-                        sender.sendMessage(plugin.tex.colour(plugin.tag + ChatColor.RED + "Usage: /cp <panel> [item] [player]"));
+                        sender.sendMessage(plugin.tex.colour(plugin.tag + ChatColor.RED + "Usage: /sp <panel> [item] [player]"));
                     }
                     return true;
                 }else if(args.length == 3){
                     if (args[1].equals("item")) {
                         plugin.openVoids.giveHotbarItem(sender,plugin.getServer().getPlayer(args[2]),panel.copy(),true);
                     }else{
-                        sender.sendMessage(plugin.tex.colour(plugin.tag + ChatColor.RED + "Usage: /cp <panel> item [player]"));
+                        sender.sendMessage(plugin.tex.colour(plugin.tag + ChatColor.RED + "Usage: /sp <panel> item [player]"));
                     }
                     return true;
                 } else {
@@ -89,7 +88,7 @@ public class Commandpanel implements CommandExecutor {
                 }
             }
         }
-        sender.sendMessage(plugin.tex.colour(plugin.tag + ChatColor.RED + "Usage: /cp <panel> [player:item] [player]"));
+        sender.sendMessage(plugin.tex.colour(plugin.tag + ChatColor.RED + "Usage: /sp <panel> [player:item] [player]"));
         return true;
     }
 }

@@ -20,9 +20,8 @@ public class Commandpanelblocks implements CommandExecutor {
     CommandPanels plugin;
     public Commandpanelblocks(CommandPanels pl) { this.plugin = pl; }
 
-    @EventHandler
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (label.equalsIgnoreCase("cpb") || label.equalsIgnoreCase("commandpanelsblock") || label.equalsIgnoreCase("cpanelb")) {
+        if (label.equalsIgnoreCase("spb") || label.equalsIgnoreCase("staffpanelsblock") || label.equalsIgnoreCase("spanelb")) {
             if(args.length >= 2) {
                 if (args[0].equalsIgnoreCase("add")) {
                     if(!(sender instanceof Player)) {
@@ -30,7 +29,7 @@ public class Commandpanelblocks implements CommandExecutor {
                         return true;
                     }
                     Player p = (Player)sender;
-                    if(p.hasPermission("commandpanel.block.add")){
+                    if(p.hasPermission("staffpanel.block.add")){
                         if(Objects.requireNonNull(plugin.config.getString("config.panel-blocks")).equalsIgnoreCase("false")){
                             sender.sendMessage(plugin.tex.colour(plugin.tag + ChatColor.RED + "Panel blocks disabled in config!"));
                             return true;
@@ -74,12 +73,12 @@ public class Commandpanelblocks implements CommandExecutor {
             }
             if(args.length == 1){
                 if (args[0].equalsIgnoreCase("remove")) {
-                    if(!(sender instanceof Player)) {
+                    if(!(sender instanceof Player p)) {
                         sender.sendMessage(plugin.tex.colour(plugin.tag + ChatColor.RED + "Please execute command as a Player!"));
                         return true;
                     }
-                    Player p = (Player)sender;
-                    if(p.hasPermission("commandpanel.block.remove")){
+
+                    if(p.hasPermission("staffpanel.block.remove")){
                         if(Objects.requireNonNull(plugin.config.getString("config.panel-blocks")).equalsIgnoreCase("false")){
                             sender.sendMessage(plugin.tex.colour(plugin.tag + ChatColor.RED + "Panel blocks disabled in config!"));
                             return true;
@@ -106,7 +105,7 @@ public class Commandpanelblocks implements CommandExecutor {
                     return true;
                 }
                 if (args[0].equalsIgnoreCase("list")) {
-                    if(sender.hasPermission("commandpanel.block.list")){
+                    if(sender.hasPermission("staffpanel.block.list")){
                         if(Objects.requireNonNull(plugin.config.getString("config.panel-blocks")).equalsIgnoreCase("false")){
                             sender.sendMessage(plugin.tex.colour(plugin.tag + ChatColor.RED + "Panel blocks disabled in config!"));
                             return true;

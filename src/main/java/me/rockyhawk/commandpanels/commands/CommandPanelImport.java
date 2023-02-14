@@ -19,9 +19,8 @@ public class CommandPanelImport implements CommandExecutor {
     CommandPanels plugin;
     public CommandPanelImport(CommandPanels pl) { this.plugin = pl; }
 
-    @EventHandler
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (sender.hasPermission("commandpanel.import")) {
+        if (sender.hasPermission("staffpanel.import")) {
             if (args.length == 2) {
                 //import command
                 new BukkitRunnable() {
@@ -36,7 +35,7 @@ public class CommandPanelImport implements CommandExecutor {
         }else{
             sender.sendMessage(plugin.tex.colour(plugin.tag + plugin.config.getString("config.format.perms")));
         }
-        sender.sendMessage(plugin.tex.colour(plugin.tag + ChatColor.RED + "Usage: /cpi <file name> <url>"));
+        sender.sendMessage(plugin.tex.colour(plugin.tag + ChatColor.RED + "Usage: /spi <file name> <url>"));
         return true;
     }
 

@@ -66,7 +66,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 import java.util.*;
-import java.util.concurrent.Callable;
 
 public class CommandPanels extends JavaPlugin{
     public YamlConfiguration config;

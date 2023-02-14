@@ -12,11 +12,10 @@ public class Commandpanelsdebug implements CommandExecutor {
     CommandPanels plugin;
     public Commandpanelsdebug(CommandPanels pl) { this.plugin = pl; }
 
-    @EventHandler
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (sender.hasPermission("commandpanel.debug")) {
+        if (sender.hasPermission("staffpanel.debug")) {
             if (args.length == 0) {
-                //command /cpd
+                //sommand /spd
                 if(!(sender instanceof Player)) {
                     plugin.debug.consoleDebug = !plugin.debug.consoleDebug;
                     sender.sendMessage(plugin.tex.colour(plugin.tag + ChatColor.GREEN + "Global Debug Mode: " + plugin.debug.consoleDebug));
@@ -32,7 +31,7 @@ public class Commandpanelsdebug implements CommandExecutor {
                     sender.sendMessage(plugin.tex.colour(plugin.tag + ChatColor.GREEN + "Personal Debug Mode Enabled!"));
                 }
             }else{
-                sender.sendMessage(plugin.tex.colour(plugin.tag + ChatColor.RED + "Usage: /cpd"));
+                sender.sendMessage(plugin.tex.colour(plugin.tag + ChatColor.RED + "Usage: /spd"));
             }
         }else{
             sender.sendMessage(plugin.tex.colour(plugin.tag + plugin.config.getString("config.format.perms")));

@@ -20,6 +20,15 @@
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
                 <includes>
+                    <include>BottomSettings.yml</include>
+                    <include>example_bottom.yml</include>
+                    <include>example_middle_one.yml</include>
+                    <include>example_middle_two.yml</include>
+                    <include>example_top.yml</include>
+                    <include>exampleLegacy.yml</include>
+                    <include>ItemEditMenu.yml</include>
+                    <include>PanelEditMenu.yml</include>
+                    <include>template.yml</include>
                     <include>plugin.yml</include>
                     <include>config.yml</include>
                 </includes>

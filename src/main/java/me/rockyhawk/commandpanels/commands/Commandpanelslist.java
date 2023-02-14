@@ -15,11 +15,10 @@ public class Commandpanelslist implements CommandExecutor {
     CommandPanels plugin;
     public Commandpanelslist(CommandPanels pl) { this.plugin = pl; }
 
-    @EventHandler
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (label.equalsIgnoreCase("cpl") || label.equalsIgnoreCase("commandpanellist") || label.equalsIgnoreCase("cpanell")) {
-            if (sender.hasPermission("commandpanel.list")) {
-                //command /cpl
+        if (label.equalsIgnoreCase("spl") || label.equalsIgnoreCase("staffpanellist") || label.equalsIgnoreCase("spanell")) {
+            if (sender.hasPermission("staffpanel.list")) {
+                //command /spl
                 //check to make sure the panels isn't empty
                 try {
                     if (plugin.panelList == null) {
@@ -49,13 +48,13 @@ public class Commandpanelslist implements CommandExecutor {
                         return true;
                     }
                 }
-                sender.sendMessage(ChatColor.AQUA + "Type /cpl " + (page+1) + " to read next page");
+                sender.sendMessage(ChatColor.AQUA + "Type /spl " + (page+1) + " to read next page");
             }else{
                 sender.sendMessage(plugin.tex.colour(plugin.tag + plugin.config.getString("config.format.perms")));
             }
             return true;
         }
-        sender.sendMessage(plugin.tex.colour(plugin.tag + ChatColor.RED + "Usage: /cpl"));
+        sender.sendMessage(plugin.tex.colour(plugin.tag + ChatColor.RED + "Usage: /spl"));
         return true;
     }
 }

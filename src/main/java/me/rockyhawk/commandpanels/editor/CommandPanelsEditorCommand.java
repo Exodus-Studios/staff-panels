@@ -17,7 +17,6 @@ public class CommandPanelsEditorCommand implements CommandExecutor {
         this.plugin = pl;
     }
 
-    @EventHandler
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if(!sender.hasPermission("commandpanel.edit")){
             sender.sendMessage(plugin.tex.colour(plugin.tag + plugin.config.getString("config.format.perms")));

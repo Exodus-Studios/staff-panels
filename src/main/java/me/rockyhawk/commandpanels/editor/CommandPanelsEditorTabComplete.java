@@ -18,14 +18,14 @@ public class CommandPanelsEditorTabComplete implements TabCompleter {
     public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
         if(sender instanceof Player && args.length == 1){
             Player p = ((Player) sender).getPlayer();
-            ArrayList<String> apanels = new ArrayList<String>(); //all panels
+            ArrayList<String> apanels = new ArrayList<>(); //all panels
             try {
                 for(Panel panel : plugin.panelList) { //will loop through all the files in folder
                     if(!panel.getName().startsWith(args[0])){
                         //this will narrow down the panels to what the user types
                         continue;
                     }
-                    if(sender.hasPermission("commandpanel.panel." + panel.getConfig().getString("perm"))) {
+                    if(sender.hasPermission("staffpanel.panel." + panel.getConfig().getString("perm"))) {
                         if(plugin.panelPerms.isPanelWorldEnabled(p,panel.getConfig())){
                             apanels.add(panel.getName());
                         }

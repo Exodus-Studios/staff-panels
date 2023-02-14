@@ -15,15 +15,14 @@ public class Commandpanelsgenerate implements CommandExecutor {
     CommandPanels plugin;
     public Commandpanelsgenerate(CommandPanels pl) { this.plugin = pl; }
 
-    @EventHandler
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if(!(sender instanceof Player)) {
             sender.sendMessage(plugin.tex.colour(plugin.tag + ChatColor.RED + "Please execute command as a Player!"));
             return true;
         }
         Player p = (Player) sender;
-        if (label.equalsIgnoreCase("cpg") || label.equalsIgnoreCase("commandpanelgenerate") || label.equalsIgnoreCase("cpanelg")) {
-            if (p.hasPermission("commandpanel.generate")) {
+        if (label.equalsIgnoreCase("spg") || label.equalsIgnoreCase("staffpanelgenerate") || label.equalsIgnoreCase("spanelg")) {
+            if (p.hasPermission("staffpanel.generate")) {
                 if (args.length == 1) {
                     //command /cpg
                     try {
@@ -47,14 +46,14 @@ public class Commandpanelsgenerate implements CommandExecutor {
                     }
                     return true;
                 }
-                p.sendMessage(plugin.tex.colour( plugin.tag + ChatColor.RED + "Usage: /cpg [rows]"));
+                p.sendMessage(plugin.tex.colour( plugin.tag + ChatColor.RED + "Usage: /spg [rows]"));
                 return true;
             }else{
                 p.sendMessage(plugin.tex.colour(plugin.tag + plugin.config.getString("config.format.perms")));
                 return true;
             }
         }
-        p.sendMessage(plugin.tex.colour(plugin.tag + ChatColor.RED + "Usage: /cpg [rows]"));
+        p.sendMessage(plugin.tex.colour(plugin.tag + ChatColor.RED + "Usage: /spg [rows]"));
         return true;
     }
 }

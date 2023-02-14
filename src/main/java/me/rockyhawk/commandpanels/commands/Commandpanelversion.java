@@ -11,12 +11,11 @@ public class Commandpanelversion implements CommandExecutor {
     CommandPanels plugin;
     public Commandpanelversion(CommandPanels pl) { this.plugin = pl; }
 
-    @EventHandler
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
-        if (label.equalsIgnoreCase("cpv") || label.equalsIgnoreCase("commandpanelversion") || label.equalsIgnoreCase("cpanelv")) {
+        if (label.equalsIgnoreCase("spv") || label.equalsIgnoreCase("staffpanelversion") || label.equalsIgnoreCase("spanelv")) {
             if(args.length == 0) {
-                if (sender.hasPermission("commandpanel.version")) {
+                if (sender.hasPermission("staffpanel.version")) {
                     //version command
                     String latestVersion = plugin.updater.getLatestVersion(false);
                     sender.sendMessage(plugin.tex.colour(plugin.tag));
@@ -24,12 +23,12 @@ public class Commandpanelversion implements CommandExecutor {
                     sender.sendMessage(ChatColor.GREEN + "Latest Version " + ChatColor.GRAY + latestVersion);
                     sender.sendMessage(ChatColor.GRAY + "-------------------");
                     sender.sendMessage(ChatColor.GREEN + "Developer " + ChatColor.GRAY + "RockyHawk");
-                    sender.sendMessage(ChatColor.GREEN + "Command   " + ChatColor.GRAY + "/cp");
+                    sender.sendMessage(ChatColor.GREEN + "Command   " + ChatColor.GRAY + "/sp");
                 } else {
                     sender.sendMessage(plugin.tex.colour(plugin.tag + plugin.config.getString("config.format.perms")));
                 }
             }else if(args.length == 1){
-                if (sender.hasPermission("commandpanel.update")) {
+                if (sender.hasPermission("staffpanel.update")) {
                     if (args[0].equals("cancel")) {
                         plugin.updater.downloadVersionManually = null;
                         sender.sendMessage(plugin.tex.colour(plugin.tag + ChatColor.GREEN + "Will not download a new version on restart."));
@@ -41,7 +40,7 @@ public class Commandpanelversion implements CommandExecutor {
                     sender.sendMessage(plugin.tex.colour(plugin.tag + plugin.config.getString("config.format.perms")));
                 }
             }else{
-                sender.sendMessage(plugin.tex.colour(plugin.tag + ChatColor.RED + "Usage: /cpv [update:latest:cancel]"));
+                sender.sendMessage(plugin.tex.colour(plugin.tag + ChatColor.RED + "Usage: /spv [update:latest:cancel]"));
             }
             return true;
         }

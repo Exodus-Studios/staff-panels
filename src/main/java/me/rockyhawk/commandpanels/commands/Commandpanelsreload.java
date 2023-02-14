@@ -20,10 +20,9 @@ public class Commandpanelsreload implements CommandExecutor {
     CommandPanels plugin;
     public Commandpanelsreload(CommandPanels pl) { this.plugin = pl; }
 
-    @EventHandler
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (label.equalsIgnoreCase("cpr") || label.equalsIgnoreCase("commandpanelreload") || label.equalsIgnoreCase("cpanelr")) {
-            if (sender.hasPermission("commandpanel.reload")) {
+        if (label.equalsIgnoreCase("spr") || label.equalsIgnoreCase("staffpanelreload") || label.equalsIgnoreCase("spanelr")) {
+            if (sender.hasPermission("staffpanel.reload")) {
                 //close all the panels
                 for(String name : plugin.openPanels.openPanels.keySet()){
                     plugin.openPanels.closePanelForLoader(name, PanelPosition.Top);

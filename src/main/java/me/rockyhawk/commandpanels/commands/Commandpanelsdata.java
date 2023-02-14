@@ -13,9 +13,8 @@ public class Commandpanelsdata implements CommandExecutor {
     CommandPanels plugin;
     public Commandpanelsdata(CommandPanels pl) { this.plugin = pl; }
 
-    @EventHandler
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (sender.hasPermission("commandpanel.data")) {
+        if (sender.hasPermission("staffpanel.data")) {
             boolean sendPlayerMessage = true;
             //if the first argument is -s it will not send a message to the sender
             if(args[0].equalsIgnoreCase("-s")){
@@ -77,7 +76,7 @@ public class Commandpanelsdata implements CommandExecutor {
                 }
                 return  true;
             }
-            sender.sendMessage(plugin.tex.colour(plugin.tag + ChatColor.RED + "Usage: /cpdata <set:add:get:remove:clear> <player> <data> [value]"));
+            sender.sendMessage(plugin.tex.colour(plugin.tag + ChatColor.RED + "Usage: /spdata <set:add:get:remove:clear> <player> <data> [value]"));
         }else{
             sender.sendMessage(plugin.tex.colour(plugin.tag + plugin.config.getString("config.format.perms")));
         }

@@ -19,15 +19,15 @@ public class BlocksTabComplete implements TabCompleter {
         if(sender instanceof Player){
             Player p = ((Player) sender).getPlayer();
                 if(args.length == 2) {
-                    if(args[0].equals("add") && p.hasPermission("commandpanel.block.add")) {
-                        ArrayList<String> apanels = new ArrayList<String>(); //all panels
+                    if(args[0].equals("add") && p.hasPermission("staffpanel.block.add")) {
+                        ArrayList<String> apanels = new ArrayList<>(); //all panels
                         try {
                             for (Panel panel : plugin.panelList) { //will loop through all the files in folder
                                 if (!panel.getName().startsWith(args[1])) {
                                     //this will narrow down the panels to what the user types
                                     continue;
                                 }
-                                if (sender.hasPermission("commandpanel.panel." + panel.getConfig().getString("perm"))) {
+                                if (sender.hasPermission("staffpanel.panel." + panel.getConfig().getString("perm"))) {
                                     if(plugin.panelPerms.isPanelWorldEnabled(p,panel.getConfig())){
                                         apanels.add(panel.getName());
                                     }
@@ -41,14 +41,14 @@ public class BlocksTabComplete implements TabCompleter {
                     }
                 }
                 if(args.length == 1){
-                    ArrayList<String> output = new ArrayList<String>();
-                    if (sender.hasPermission("commandpanel.block.add")){
+                    ArrayList<String> output = new ArrayList<>();
+                    if (sender.hasPermission("staffpanel.block.add")){
                         output.add("add");
                     }
-                    if (sender.hasPermission("commandpanel.block.remove")){
+                    if (sender.hasPermission("staffpanel.block.remove")){
                         output.add("remove");
                     }
-                    if (sender.hasPermission("commandpanel.block.list")){
+                    if (sender.hasPermission("staffpanel.block.list")){
                         output.add("list");
                     }
                     return output;
