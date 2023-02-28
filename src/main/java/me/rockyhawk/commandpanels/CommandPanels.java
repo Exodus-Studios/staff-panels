@@ -46,7 +46,6 @@ import me.rockyhawk.commandpanels.panelblocks.Commandpanelblocks;
 import me.rockyhawk.commandpanels.panelblocks.PanelBlockOnClick;
 import me.rockyhawk.commandpanels.playerinventoryhandler.InventorySaver;
 import me.rockyhawk.commandpanels.playerinventoryhandler.ItemStackSerializer;
-import me.rockyhawk.commandpanels.updater.Updater;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -93,7 +92,6 @@ public class CommandPanels extends JavaPlugin{
     public ItemCreation itemCreate = new ItemCreation(this);
     public HasSections has = new HasSections(this);
     public GetCustomHeads customHeads = new GetCustomHeads(this);
-    public Updater updater = new Updater(this);
     public PlayerHeads getHeads = new PlayerHeads(this);
     public LegacyVersion legacy = new LegacyVersion(this);
 
@@ -142,11 +140,6 @@ public class CommandPanels extends JavaPlugin{
             }
         }
 
-        //set version to latest version
-        if (Objects.requireNonNull(this.config.getString("updater.update-checks")).equalsIgnoreCase("true")) {
-            updater.githubNewUpdate(false);
-        }
-
         //setup class files
         this.setupEconomy();
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
@@ -173,11 +166,6 @@ public class CommandPanels extends JavaPlugin{
         this.getServer().getPluginManager().registerEvents(new GenUtils(this), this);
         this.getServer().getPluginManager().registerEvents(new ItemFallManager(this), this);
         this.getServer().getPluginManager().registerEvents(new OpenOnJoin(this), this);
-
-        //load in the updater if requested
-        if (Objects.requireNonNull(config.getString("updater.update-checks")).equalsIgnoreCase("true")) {
-            this.getServer().getPluginManager().registerEvents(updater, this);
-        }
 
         //load in PlaceholderAPI Expansion
         if (this.getServer().getPluginManager().isPluginEnabled("PlaceholderAPI")) {
@@ -253,10 +241,6 @@ public class CommandPanels extends JavaPlugin{
             }
         }
 
-        if (Objects.requireNonNull(this.config.getString("config.update-notifications")).equalsIgnoreCase("true")) {
-            updater.githubNewUpdate(true);
-        }
-
         //load panelFiles
         reloadPanelFiles();
 
@@ -281,7 +265,6 @@ public class CommandPanels extends JavaPlugin{
         //save files
         panelData.saveDataFile();
         inventorySaver.saveInventoryFile();
-        updater.autoUpdatePlugin(this.getFile().getName());
         Bukkit.getLogger().info("RockyHawk's CommandPanels Plugin Disabled, aww man.");
     }
 
